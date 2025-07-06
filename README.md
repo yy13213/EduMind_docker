@@ -13,6 +13,16 @@
 
 </div>
 
+## 🔥 最新更新
+
+### v1.1.0 (2025-07-07)
+- ✅ **重要修复**: 解决了 "File does not exist: app.py" 错误
+- 🔧 **Docker优化**: 修复了构建上下文配置问题
+- 📦 **完整文件**: 现在包含所有必要的应用文件（app.py、HelloWeb.py等）
+- 🎯 **即开即用**: 克隆后可直接运行，无需额外配置
+
+> **注意**: 如果您之前遇到 app.py 文件找不到的错误，请重新克隆本仓库并重新部署。
+
 ## 🌟 项目简介
 
 EduMind 是一个基于 Streamlit 开发的多模态教育管理平台，集成了：
@@ -199,8 +209,13 @@ EduMind_docker/
 ├── 🚫 .dockerignore          # Docker构建忽略文件
 ├── 🐧 start.sh               # Linux/Mac启动脚本
 ├── 🪟 start.bat              # Windows启动脚本
-├── 📄 LICENSE                # MIT许可证
-└── ⚙️ env.example            # 环境变量配置示例
+├── 📁 data/                  # 数据目录
+├── 📁 logs/                  # 日志目录
+├── 🐍 app.py                 # 主应用文件
+├── 🌐 HelloWeb.py            # Web组件
+├── 🧪 test.py                # 测试文件
+├── 📝 homework.py            # 作业模块
+└── 🎨 *.ttf, *.png, *.jpg    # 资源文件
 ```
 
 ## 🔐 安全说明
