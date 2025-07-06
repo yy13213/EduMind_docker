@@ -1,0 +1,59 @@
+services:
+  edumind:
+    build:
+      context: ..
+      dockerfile: EduMind_docker/Dockerfile
+    ports:
+      - "127.0.0.1:8501:8501"
+    volumes:
+      - ../data:/app/data
+      - ../logs:/app/logs
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - edumind_network
+
+  # 可选：添加数据库服务（如果需要）
+  # database:
+  #   image: postgres:13
+  #   container_name: edumind_db
+  #   environment:
+  #     POSTGRES_DB: edumind
+  #     POSTGRES_USER: edumind_user
+  #     POSTGRES_PASSWORD: edumind_password
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - edumind_network
+
+  # 可选：添加Redis缓存服务（如果需要）
+  # redis:
+  #   image: redis:6-alpine
+  #   container_name: edumind_redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+  #   networks:
+  #     - edumind_network
+
+networks:
+  edumind_network:
+    driver: bridge
+
+volumes:
+  # postgres_data:
+  # redis_data:
+  data_volume:
+  logs_volume: 
